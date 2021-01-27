@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EdiFabric.Core.Model.Telco;
+using EdiFabric.Templates.TelcoD0;
+using System;
 using System.Collections.Generic;
 
 namespace EdiFabric.Examples.NCPDP.Telco.Common
@@ -6,311 +8,148 @@ namespace EdiFabric.Examples.NCPDP.Telco.Common
     public class SegmentBuilders
     {
         /// <summary>
-        /// Build FHS
+        /// Build TransmissionHeader
         /// </summary>
         /// <returns></returns>
-        //public static FHS BuildFhs(string senderId = "LAB1", string senderFacility = "LAB", string receiverId = "DEST2", string receiverFacility = "DEST", string comment = "TESTFILE", string controlNr = "123456" )
-        //{
-        //    var result = new FHS();
+        public static TransmissionHeader BuildTransmissionHeader(string batchNr = "1234567", string senderId = "SENDER1", string receiverId = "RECEIVER2")
+        {
+            var result = new TransmissionHeader();
 
-        //    result.FileSendingApplication_02 = new FileSendingApplication();
-        //    result.FileSendingApplication_02.NamespaceID_01 = senderId;
+            result.TransmissionType_1 = "T";
+            result.SenderId_2 = senderId;
+            result.BatchNumber_3 = batchNr;
+            result.CreationDate_4 = DateTime.Now.Date.ToString("yyyyMMdd");
+            result.CreationTime_5 = DateTime.Now.TimeOfDay.ToString("hhmm");
+            result.FileType_6 = "P";
+            result.Version_7 = "12";
+            result.ReceiverId_8 = receiverId;
 
-        //    result.FileSendingFacility_03 = new FileSendingFacility();
-        //    result.FileSendingFacility_03.NamespaceID_01 = senderFacility;
-
-        //    result.FileReceivingApplication_04 = new FileReceivingApplication();
-        //    result.FileReceivingApplication_04.NamespaceID_01 = receiverId;
-
-        //    result.FileReceivingFacility_05 = new FileReceivingFacility();
-        //    result.FileReceivingFacility_05.NamespaceID_01 = receiverFacility;
-
-        //    result.FileCreationDateTime_06 = DateTime.Now.Date.ToString("yyyyMMdd") + DateTime.Now.TimeOfDay.ToString("hhmmss");
-
-        //    result.FileHeaderComment_9 = comment;
-
-        //    result.FileControlID_10 = controlNr;
-
-        //    return result;
-        //}
+            return result;
+        }
 
         /// <summary>
-        /// Build BHS
+        /// Build Billing Claim
         /// </summary>
         /// <returns></returns>
-        //public static BHS BuildBhs(string senderId = "LAB1", string senderFacility = "LAB", string receiverId = "DEST2", string receiverFacility = "DEST", string comment = "TESTBATCH", string controlNr = "123456")
-        //{
-        //    var result = new BHS();
+        public static TSB1 BuildClaim(string tranRefNumber = "123", string binNumber = "123", string processorNumber = "123", string reversalReq = "1", string billingReq = "1", string preReq = "1")
+        {
+            var result = new TSB1();
 
-        //    result.BatchSendingApplication_02 = new BatchSendingApplication();
-        //    result.BatchSendingApplication_02.NamespaceID_01 = senderId;
+            //  G1 header
+            result.G1 = new TransactionHeader();
+            result.G1.TransactionReferenceNumber_1 = tranRefNumber;
+            result.G1.BINNumber_2 = binNumber;
+            result.G1.VersionReleaseNumber_3 = "D0";
+            result.G1.TransactionCode_4 = "B1";
+            result.G1.ProcessorControlNumber_5 = processorNumber;
+            result.G1.TransactionCount_6 = "1";
+            result.G1.ReversalRequest_7 = reversalReq;
+            result.G1.BillingRequest_8 = billingReq;
+            result.G1.PredeterminationofBenefitsRequest_9 = preReq;
+            result.G1.SoftwareVendorCertificationID_10 = "";
 
-        //    result.BatchSendingFacility_03 = new BatchSendingFacility();
-        //    result.BatchSendingFacility_03.NamespaceID_01 = senderFacility;
+            //  AM04 Loop
+            result.AM04Loop = new Loop_AM04_TSB1();
 
-        //    result.BatchReceivingApplication_04 = new BatchReceivingApplication();
-        //    result.BatchReceivingApplication_04.NamespaceID_01 = receiverId;
+            //  AM04 Segment
+            result.AM04Loop.AM04 = new AM04();
+            result.AM04Loop.AM04.CardholderID_C2 = "DK86342S";
+            result.AM04Loop.AM04.EligibilityClarificationCode_C9 = "0";
+            result.AM04Loop.AM04.PersonCode_C3 = "001";
 
-        //    result.BatchReceivingFacility_05 = new BatchReceivingFacility();
-        //    result.BatchReceivingFacility_05.NamespaceID_01 = receiverFacility;
+            //  AM01 Segment
+            result.AM04Loop.AM01 = new AM01();
+            result.AM04Loop.AM01.DateOfBirth_C4 = "19970213";
+            result.AM04Loop.AM01.PatientGenderCode_C5 = "1";
+            result.AM04Loop.AM01.PatientFirstName_CA = "TAHIEM";
+            result.AM04Loop.AM01.PatientLastName_CB = "HART";
 
-        //    result.BatchCreationDateTime_06 = DateTime.Now.Date.ToString("yyyyMMdd") + DateTime.Now.TimeOfDay.ToString("hhmmss");
+            //  Repeating AM07 Loops
+            result.AM07Loop = new List<Loop_AM07_TSB1>();
 
-        //    result.BatchComment_9 = comment;
+            //  BEGIN AM07 LOOP
+            var am07Loop1 = new Loop_AM07_TSB1();
 
-        //    result.BatchControlID_10 = controlNr;
+            //  AM07 Segment
+            am07Loop1.AM07 = new AM07();
+            am07Loop1.AM07.PrescriptionServiceReferenceNumberQualifier_EM = "1";
+            am07Loop1.AM07.PrescriptionServiceReferenceNumber_D2 = "000005073530";
+            am07Loop1.AM07.ProductServiceIDQualifier_E1 = "03";
+            am07Loop1.AM07.ProductServiceID_D7 = "16729014912";
+            am07Loop1.AM07.QuantityDispensed_E7 = "60000";
+            am07Loop1.AM07.FillNumber_D3 = "00";
+            am07Loop1.AM07.DaysSupply_D5 = "060";
+            am07Loop1.AM07.CompoundCode_D6 = "1";
+            am07Loop1.AM07.DispenseAsWritten_D8 = "0";
+            am07Loop1.AM07.DatePrescriptionWritten_DE = "20151112";
+            am07Loop1.AM07.NumberOfRefillsAuthorized_DF = "00";
+            am07Loop1.AM07.PrescriptionOriginCode_DJ = "1";
+            am07Loop1.AM07.OtherCoverageCode_C8 = "01";
+            am07Loop1.AM07.ScheduledPrescriptionIDNumber_EK = "06KVYZ11";
+            am07Loop1.AM07.DelayReasonCode_NV = "03";
 
-        //    return result;
-        //}
+            //  AM11 Segment
+            am07Loop1.AM11 = new AM11();
+            am07Loop1.AM11.IngredientCostSubmitted_D9 = "218G";
+            am07Loop1.AM11.PatientPaidAmountSubmitted_DX = "0000000";
+            am07Loop1.AM11.UsualAndCustomaryCharge_DQ = "253G";
+            am07Loop1.AM11.GrossAmountDue_DU = "10177E";
 
-        //public static TSRDSO13 BuildDispense(string senderId = "LAB1", string senderFacility = "LAB", string receiverId = "DEST2", string receiverFacility = "DEST", string controlNr = "123456")
-        //{
-        //    var result = new TSRDSO13();
+            //  AM03 Segment
+            am07Loop1.AM03 = new AM03();
+            am07Loop1.AM03.PrescriberIDQualifier_EZ = "01";
+            am07Loop1.AM03.PrescriberID_DB = "1023043676";
 
-        //    //  MSH segment
-        //    result.MSH = new MSH();
+            //  AM05 Segment
+            am07Loop1.AM05 = new AM05();
+            am07Loop1.AM05.CoordinationOfBenefitsOtherPaymentsCount_4C = "2";
+            
+            //  Repeating C4C
+            am07Loop1.AM05.C4C_02 = new List<C4C>();
 
-        //    result.MSH.SendingApplication_02 = new SendingApplication();
-        //    result.MSH.SendingApplication_02.NamespaceID_01 = senderId;
+            //  C4C 1
+            var c4c1 = new C4C();
+            c4c1.OtherPayerCoverageType_5C = "DATA1";
+            c4c1.OtherPayerIDQualifier_6C = "DATA2";
+            c4c1.OtherPayerAmountPaidCount_HB = "2";
+            c4c1.CHB_07 = new List<CHB>();
 
-        //    result.MSH.SendingFacility_03 = new SendingFacility();
-        //    result.MSH.SendingFacility_03.NamespaceID_01 = senderFacility;
+            var chb1 = new CHB();
+            chb1.OtherPayerAmountPaidQualifier_HC = "DATA3";
+            chb1.OtherPayerAmountPaid_DV = "DATA4";
+            c4c1.CHB_07.Add(chb1);
 
-        //    result.MSH.ReceivingApplication_04 = new ReceivingApplication();
-        //    result.MSH.ReceivingApplication_04.NamespaceID_01 = receiverId;
+            var chb2 = new CHB();
+            chb2.OtherPayerAmountPaidQualifier_HC = "DATA5";
+            chb2.OtherPayerAmountPaid_DV = "DATA6";
+            c4c1.CHB_07.Add(chb2);
 
-        //    result.MSH.ReceivingFacility_05 = new ReceivingFacility();
-        //    result.MSH.ReceivingFacility_05.NamespaceID_01 = receiverFacility;
+            am07Loop1.AM05.C4C_02.Add(c4c1);
 
-        //    result.MSH.DateTimeOfMessage_06 = DateTime.Now.Date.ToString("yyyyMMdd") + DateTime.Now.TimeOfDay.ToString("hhmm");
+            //  C4C 2
+            var c4c2 = new C4C();
+            c4c2.OtherPayerCoverageType_5C = "DATA7";
+            c4c2.OtherPayerIDQualifier_6C = "DATA8";
+            c4c2.OtherPayerAmountPaidCount_HB = "2";
+            c4c2.CHB_07 = new List<CHB>();
 
-        //    result.MSH.MessageType_08 = new MessageType();
-        //    result.MSH.MessageType_08.MessageCode_01 = "RDS";
-        //    result.MSH.MessageType_08.TriggerEvent_02 = "O13";
-        //    result.MSH.MessageType_08.MessageStructure_03 = "RDS_O13";
+            var chb3 = new CHB();
+            chb3.OtherPayerAmountPaidQualifier_HC = "DATA9";
+            chb3.OtherPayerAmountPaid_DV = "DATA10";
+            c4c2.CHB_07.Add(chb3);
 
-        //    result.MSH.MessageControlID_9 = controlNr;
+            var chb4 = new CHB();
+            chb4.OtherPayerAmountPaidQualifier_HC = "DATA11";
+            chb4.OtherPayerAmountPaid_DV = "DATA12";
+            c4c2.CHB_07.Add(chb4);
 
-        //    result.MSH.ProcessingID_10 = new ProcessingID();
-        //    result.MSH.ProcessingID_10.ProcessingID_01 = "P";
+            am07Loop1.AM05.C4C_02.Add(c4c2);
 
-        //    result.MSH.VersionID_11 = new VersionID();
-        //    result.MSH.VersionID_11.VersionID_01 = "2.6";
+            //  END AM07 LOOP
+            result.AM07Loop.Add(am07Loop1);
 
-        //    //  PID LOOP
-        //    result.LoopPID = new Loop_PID_TSRDSO13();
+            return result;
+        }
 
-        //    //  BEGIN PID LOOP
-
-        //    //  PID segment
-        //    result.LoopPID.PID = new PID();
-        //    //  Patient ID
-        //    result.LoopPID.PID.PatientID_02 = new ExtendedCompositeIDWithCheckDigit();
-        //    result.LoopPID.PID.PatientID_02.IDNumber_01 = "0008064993";
-        //    result.LoopPID.PID.PatientID_02.AssigningAuthority_04 = new ExtendedAssigningAuthority();
-        //    result.LoopPID.PID.PatientID_02.AssigningAuthority_04.ExtendedAssigningAuthority01 = "ENT";
-        //    result.LoopPID.PID.PatientID_02.IdentifierTypeCode_05 = "PE";
-        //    result.LoopPID.PID.PatientID_02.EffectiveDate_07 = "20030806";
-        //    result.LoopPID.PID.PatientID_02.ExpirationDate_08 = "200507";
-        //    //  Patient Identifier
-        //    result.LoopPID.PID.PatientIdentifierList_03 = new List<ExtendedCompositeIDWithCheckDigit>();
-
-        //    var patientIdentifier1 = new ExtendedCompositeIDWithCheckDigit();
-        //    patientIdentifier1.IDNumber_01 = "0008064993";
-        //    patientIdentifier1.AssigningAuthority_04 = new ExtendedAssigningAuthority();
-        //    patientIdentifier1.AssigningAuthority_04.ExtendedAssigningAuthority01 = "PAT";
-        //    patientIdentifier1.IdentifierTypeCode_05 = "MR";
-        //    patientIdentifier1.AssigningFacility_06 = new AssigningFacility();
-        //    patientIdentifier1.AssigningFacility_06.NamespaceID_01 = "20030806";
-        //    patientIdentifier1.EffectiveDate_07 = "2005";
-
-        //    result.LoopPID.PID.PatientIdentifierList_03.Add(patientIdentifier1);
-
-        //    //  Patient Name
-        //    result.LoopPID.PID.PatientName_05 = new List<ExtendedPersonName>();
-
-        //    var patientName1 = new ExtendedPersonName();
-        //    patientName1.FamilyName_01 = new FamilyName();
-        //    patientName1.FamilyName_01.Surname_01 = "SURNAME";
-        //    patientName1.Suffix_04 = "PATA";
-        //    patientName1.Prefix_05 = "AN";
-
-        //    result.LoopPID.PID.PatientName_05.Add(patientName1);
-
-        //    //  Patient Mothers Name
-        //    result.LoopPID.PID.MothersMaidenName_06 = new List<ExtendedPersonName>();
-        //    var mothersMaidenName1 = new ExtendedPersonName();
-        //    mothersMaidenName1.FamilyName_01 = new FamilyName();
-        //    mothersMaidenName1.FamilyName_01.Surname_01 = "EVERYWOMEN";
-        //    mothersMaidenName1.GivenName_02 = "EVE";
-        //    mothersMaidenName1.SecondAndFurtherGivenNamesOrInitialsThereof_03 = "J";
-
-        //    result.LoopPID.PID.MothersMaidenName_06.Add(mothersMaidenName1);
-
-        //    //  DOB
-        //    result.LoopPID.PID.DateTimeOfBirth_07 = "19471007";
-
-        //    //  Sex
-        //    result.LoopPID.PID.AdministrativeSex_08 = "F";
-
-        //    //  Race
-        //    result.LoopPID.PID.Race_10 = new List<GuarantorRace>();
-
-        //    var race1 = new GuarantorRace();
-
-        //    race1.GuarantorRace01 = "1016-5";
-
-        //    result.LoopPID.PID.Race_10.Add(race1);
-
-        //    //  Patient Address
-        //    result.LoopPID.PID.PatientAddress_11 = new List<ExtendedAddress>();
-
-        //    var patientAddress1 = new ExtendedAddress();
-        //    patientAddress1.StreetAddress_01 = new StreetAddress();
-        //    patientAddress1.StreetAddress_01.StreetOrMailingAddress_01 = "2222HOMESTREET";
-        //    patientAddress1.City_03 = "HOUSTON";
-        //    patientAddress1.StateOrProvince_04 = "TX";
-        //    patientAddress1.ZipOrPostalCode_05 = "77030";
-        //    patientAddress1.Country_06 = "USA";
-
-        //    result.LoopPID.PID.PatientAddress_11.Add(patientAddress1);
-
-        //    //  Marital Status
-        //    result.LoopPID.PID.MaritalStatus_16 = new GuarantorMaritalStatusCode();
-        //    result.LoopPID.PID.MaritalStatus_16.GuarantorMaritalStatusCode01 = "S";
-
-        //    //  Patient Account Number
-        //    result.LoopPID.PID.PatientAccountNumber_18 = new ExtendedCompositeIDWithCheckDigit();
-        //    result.LoopPID.PID.PatientAccountNumber_18.IDNumber_01 = "6045681";
-        //    result.LoopPID.PID.PatientAccountNumber_18.AssigningAuthority_04 = new ExtendedAssigningAuthority();
-        //    result.LoopPID.PID.PatientAccountNumber_18.AssigningAuthority_04.ExtendedAssigningAuthority01 = "PATA";
-        //    result.LoopPID.PID.PatientAccountNumber_18.IdentifierTypeCode_05 = "AN";
-
-        //    //  END PID LOOP
-
-        //    //  Repeating ORC LOOP
-        //    result.LoopORC = new List<Loop_ORC_TSRDSO13>();
-
-        //    //  BEGIN ORC LOOP
-        //    var orcLoop = new Loop_ORC_TSRDSO13();
-
-        //    //  ORC Segment
-        //    orcLoop.ORC = new ORC();
-        //    orcLoop.ORC.OrderControl_01 = "CH";
-        //    orcLoop.ORC.PlacerOrderNumber_02 = new ComprehensiveLocationIdentifier();
-        //    orcLoop.ORC.PlacerOrderNumber_02.EntityIdentifier_01 = "177A";
-        //    orcLoop.ORC.PlacerOrderNumber_02.NamespaceID_02 = "SMS";
-        //    orcLoop.ORC.OrderStatus_05 = "ER";
-        //    orcLoop.ORC.ResponseFlag_06 = "N";
-        //    orcLoop.ORC.QuantityTiming_07 = new List<Timingquantity>();
-        //    //  Quantity Timing
-        //    var quantityTiming1 = new Timingquantity();
-        //    //  Quantity
-        //    quantityTiming1.Quantity_01 = new Quantity();
-        //    quantityTiming1.Quantity_01.Quantity_01 = "1";
-        //    quantityTiming1.Quantity_01.Units_02 = new InternationalVersionID();
-        //    quantityTiming1.Quantity_01.Units_02.Identifier_01 = "1_2_1";
-        //    quantityTiming1.Quantity_01.Units_02.Text_02 = "1_2_2";
-        //    quantityTiming1.Quantity_01.Units_02.NameOfCodingSystem_03 = "ATC";
-        //    quantityTiming1.Quantity_01.Units_02.AlternateIdentifier_04 = "1_2_4";
-        //    quantityTiming1.Quantity_01.Units_02.AlternateText_05 = "1_2_5";
-        //    quantityTiming1.Quantity_01.Units_02.NameOfAlternate_06 = "C4";
-        //    //  Interval
-        //    quantityTiming1.Interval_02 = new Interval();
-        //    quantityTiming1.Interval_02.RepeatPattern_01 = "C";
-        //    quantityTiming1.Interval_02.ExplicitTimeInterval_02 = "2_2";
-        //    //  Duration
-        //    quantityTiming1.Duration_03 = "3";
-        //    //  Start Date
-        //    quantityTiming1.StartDateTime_04 = new ExpirationDate();
-        //    quantityTiming1.StartDateTime_04.Time_01 = "20160827";
-        //    quantityTiming1.StartDateTime_04.DegreeOfPrecision_02 = "4";
-        //    //  End Date
-        //    quantityTiming1.EndDateTime_05 = new ExpirationDate();
-        //    quantityTiming1.EndDateTime_05.Time_01 = "20160927";
-        //    quantityTiming1.EndDateTime_05.DegreeOfPrecision_02 = "5";
-        //    //  Priority
-        //    quantityTiming1.Priority_06 = "6";
-        //    //  Condition
-        //    quantityTiming1.Condition_07 = "7";
-        //    //  Notes
-        //    quantityTiming1.Text_08 = "D";
-        //    //  Conjunction
-        //    quantityTiming1.Conjunction_09 = "S";
-        //    //  Order Sequence
-        //    quantityTiming1.OrderSequencing_10 = new OrderSequencing();
-        //    quantityTiming1.OrderSequencing_10.SequenceResultsFlag_01 = "C";
-        //    quantityTiming1.OrderSequencing_10.PlacerOrderNumberEntityIdentifier_02 = "177C";
-        //    quantityTiming1.OrderSequencing_10.PlacerOrderNumberNamespaceID_03 = "SMS";
-        //    quantityTiming1.OrderSequencing_10.FillerOrderNumberEntityIdentifier_04 = "M";
-        //    quantityTiming1.OrderSequencing_10.FillerOrderNumberNamespaceID_05 = "P";
-        //    quantityTiming1.OrderSequencing_10.SequenceConditionValue_06 = "*ES+0M";
-        //    quantityTiming1.OrderSequencing_10.MaximumNumberOfRepeats_07 = "7";
-        //    quantityTiming1.OrderSequencing_10.PlacerOrderNumberUniversalID_08 = "T";
-        //    quantityTiming1.OrderSequencing_10.PlacerOrderNumberUniversalIDType_09 = "DNS";
-        //    quantityTiming1.OrderSequencing_10.FillerOrderNumberUniversalID_10 = "Y";
-        //    quantityTiming1.OrderSequencing_10.FillerOrderNumberUniversalIDType_11 = "DNS";
-        //    //  Occurrence duration
-        //    quantityTiming1.OccurrenceDuration_11 = new InternationalVersionID();
-        //    quantityTiming1.OccurrenceDuration_11.Identifier_01 = "C";
-        //    quantityTiming1.OccurrenceDuration_11.Text_02 = "11_2";
-        //    quantityTiming1.OccurrenceDuration_11.NameOfCodingSystem_03 = "CCC";
-        //    quantityTiming1.OccurrenceDuration_11.AlternateIdentifier_04 = "11_4";
-        //    quantityTiming1.OccurrenceDuration_11.AlternateText_05 = "11_5";
-        //    quantityTiming1.OccurrenceDuration_11.NameOfAlternate_06 = "CCC";
-
-        //    quantityTiming1.TotalOccurrences_12 = "12";
-
-        //    orcLoop.ORC.QuantityTiming_07.Add(quantityTiming1);
-
-        //    orcLoop.ORC.Parent_08 = new EntityIdentifierPair();
-        //    orcLoop.ORC.Parent_08.PlacerAssignedIdentifier_01 = new ComprehensiveLocationIdentifier();
-        //    orcLoop.ORC.Parent_08.PlacerAssignedIdentifier_01.EntityIdentifier_01 = "177";
-
-        //    //  BEGIN RXO LOOP
-        //    orcLoop.LoopRXO = new Loop_RXO_TSRDSO13();
-        //    orcLoop.LoopRXO.RXO = new RXO();
-        //    orcLoop.LoopRXO.RXO.RequestedGiveCode_01 = new AssigningAgencyOrDepartment();
-        //    orcLoop.LoopRXO.RXO.RequestedGiveCode_01.Identifier_01 = "Requested";
-        //    orcLoop.LoopRXO.RXO.RequestedGiveAmountMinimum_02 = "125";
-        //    orcLoop.LoopRXO.RXO.RequestedGiveUnits_04 = new AssigningAgencyOrDepartment();
-        //    orcLoop.LoopRXO.RXO.RequestedGiveUnits_04.Identifier_01 = "ML";
-        //    orcLoop.LoopRXO.RXO.RequestedDosageForm_05 = new AssigningAgencyOrDepartment();
-        //    orcLoop.LoopRXO.RXO.RequestedDosageForm_05.Identifier_01 = "Requested Give Per";
-        //    orcLoop.LoopRXO.RXO.ProvidersPharmacyTreatmentInstructions_06 = new List<AssigningAgencyOrDepartment>();
-        //    var providerInstructions1 = new AssigningAgencyOrDepartment();
-        //    providerInstructions1.Identifier_01 = "H1";
-
-        //    orcLoop.LoopRXO.RXO.ProvidersPharmacyTreatmentInstructions_06.Add(providerInstructions1);
-
-        //    //  END RXO LOOP
-
-        //    //  RXD Segment
-        //    orcLoop.RXD = new RXD();
-        //    orcLoop.RXD.DispenseSubIDCounter_01 = "4";
-        //    orcLoop.RXD.DispenseGiveCode_02 = new AdministeredCode();
-        //    orcLoop.RXD.DispenseGiveCode_02.AdministeredCode01 = "01";
-        //    orcLoop.RXD.DateTimeDispensed_03 = "20160927";
-        //    orcLoop.RXD.ActualDispenseAmount_04 = "5";
-        //    orcLoop.RXD.ActualDispenseUnits_05 = new AssigningAgencyOrDepartment();
-        //    orcLoop.RXD.ActualDispenseUnits_05.Identifier_01 = "D";
-        //    orcLoop.RXD.PrescriptionNumber_07 = "E";
-
-        //    //  Repeating RXR Segments
-        //    orcLoop.RXR = new List<RXR>();
-
-        //    //  RXR Segment
-        //    var rxr1 = new RXR();
-        //    rxr1.Route_01 = new Route();
-        //    rxr1.Route_01.Route01 = "PO";
-
-        //    orcLoop.RXR.Add(rxr1);
-
-        //    result.LoopORC.Add(orcLoop);
-
-        //    //  END ORC LOOP
-
-        //    return result;
-        //}
     }
 }

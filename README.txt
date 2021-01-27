@@ -16,7 +16,7 @@ Then uninstall the NuGet packages from each project and replace them with DLL re
 
 4. Serial Key
 Download the serial key from https://sowl.co/oApEt. 
-The serial key is included in the file serial.key in folder edifabric-trial. Ensure it is there and that the file is not empty. The serial key is loaded in the file SerialKey.cs in project EdiFabric.Examples.HL7.Common. 
+The serial key is included in the file serial.key in folder edifabric-trial. Ensure it is there and that the file is not empty. The serial key is loaded in the file SerialKey.cs in project EdiFabric.Examples.NCPDP.Telco.Common. 
 Open the file and ensure that the serialKeyPath is correct. If the serial key is invalid or the file is missing, contact us at https://support.edifabric.com/hc/en-us/requests/new for assistance.
 
 5. Getting started

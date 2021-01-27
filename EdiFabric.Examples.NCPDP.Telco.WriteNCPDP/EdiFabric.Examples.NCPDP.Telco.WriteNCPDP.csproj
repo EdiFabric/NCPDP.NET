@@ -50,10 +50,20 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WriteHL7ToFile.cs" />
+    <Compile Include="WriteHL7ToStream.cs" />
+    <Compile Include="WriteHL7ToStreamAsync.cs" />
+    <Compile Include="WriteHL7Batch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EdiFabric.Examples.NCPDP.Telco.Common\EdiFabric.Examples.NCPDP.Telco.Common.csproj">
+      <Project>{4dae9718-4d28-465e-a2a1-c2e824d2eea4}</Project>
+      <Name>EdiFabric.Examples.NCPDP.Telco.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
