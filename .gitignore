@@ -1,0 +1,19 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/EdiFabric.Examples.NCPDP.Telco.Common/bin/Debug
+/EdiFabric.Examples.NCPDP.Telco.Common/obj/Debug
+/EdiFabric.Examples.NCPDP.Telco.Demo/bin/Debug
+/EdiFabric.Examples.NCPDP.Telco.Demo/obj/Debug
+/EdiFabric.Examples.NCPDP.Telco.JSON/bin/Debug
+/EdiFabric.Examples.NCPDP.Telco.JSON/obj/Debug
+/EdiFabric.Examples.NCPDP.Telco.ReadNCPDP/bin/Debug
+/EdiFabric.Examples.NCPDP.Telco.ReadNCPDP/obj/Debug
+/EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP/bin/Debug
+/EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP/obj/Debug
+/EdiFabric.Examples.NCPDP.Telco.WriteNCPDP/obj/Debug
+/EdiFabric.Examples.NCPDP.Telco.XML/bin/Debug
+/EdiFabric.Examples.NCPDP.Telco.XML/obj/Debug
+/packages

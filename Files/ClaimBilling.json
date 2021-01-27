@@ -1,0 +1,209 @@
+{
+  "G1": {
+    "TransactionReferenceNumber_1": "0466917401",
+    "BINNumber_2": "004740",
+    "VersionReleaseNumber_3": "D0",
+    "TransactionCode_4": "B1",
+    "ProcessorControlNumber_5": "YRG7065NNQ",
+    "TransactionCount_6": "1",
+    "ReversalRequest_7": "05",
+    "BillingRequest_8": "02074115       ",
+    "PredeterminationofBenefitsRequest_9": "20151112",
+    "SoftwareVendorCertificationID_10": "          "
+  },
+  "AM04Loop": {
+    "AM04": {
+      "CardholderID_C2": "DK86342S",
+      "CardholderFirstName_CC": null,
+      "CardholderLastName_CD": null,
+      "HomePlan_CE": null,
+      "PlanID_FO": null,
+      "EligibilityClarificationCode_C9": "0",
+      "GroupID_C1": null,
+      "PersonCode_C3": "001",
+      "PatientRelationshipCode_C6": null,
+      "OtherPayerBINNumber_MG": null,
+      "OtherPayerProcessorControlNumber_MH": null,
+      "OtherPayerCardholderID_NU": null,
+      "OtherPayerGroupID_MJ": null,
+      "MedigapID_2A": null,
+      "MedicaidIndicator_2B": null,
+      "ProviderAcceptAssignmentIndicator_2D": null,
+      "CMSPartDDefinedQualifiedFacility_G2": null,
+      "MedicaidIDNumber_N5": null,
+      "MedicaidAgencyNumber_N6": null
+    },
+    "AM01": {
+      "PatientIDQualifier_CX": null,
+      "PatientID_CY": null,
+      "DateOfBirth_C4": "19970213",
+      "PatientGenderCode_C5": "1",
+      "PatientFirstName_CA": "TAHIEM",
+      "PatientLastName_CB": "HART",
+      "PatientStreetAddress_CM": null,
+      "PatientCityAddress_CN": null,
+      "PatientStateProvinceAddress_CO": null,
+      "PatientZipPostalZone_CP": null,
+      "PatientPhoneNumber_CQ": null,
+      "PlaceOfService_C7": null,
+      "EmployerID_CZ": null,
+      "SmokerNonSmokerCode_1C": null,
+      "PregnancyIndicator_2C": null,
+      "PatientEMailAddress_HN": null,
+      "PatientResidence_4X": null
+    }
+  },
+  "AM07Loop": [
+    {
+      "AM07": {
+        "PrescriptionServiceReferenceNumberQualifier_EM": "1",
+        "PrescriptionServiceReferenceNumber_D2": "000005073530",
+        "ProductServiceIDQualifier_E1": "03",
+        "ProductServiceID_D7": "16729014912",
+        "AssociatedPrescriptionServiceReferenceNumber_EN": null,
+        "AssociatedPrescriptionServiceDate_EP": null,
+        "ProcedureModifierCodeCount_SE": null,
+        "CSE_08": null,
+        "QuantityDispensed_E7": "60000",
+        "FillNumber_D3": "00",
+        "DaysSupply_D5": "060",
+        "CompoundCode_D6": "1",
+        "DispenseAsWritten_D8": "0",
+        "DatePrescriptionWritten_DE": "20151112",
+        "NumberOfRefillsAuthorized_DF": "00",
+        "PrescriptionOriginCode_DJ": "1",
+        "SubmissionClarificationCodeCount_NX": null,
+        "CNX_18": null,
+        "QuantityPrescribed_ET": null,
+        "OtherCoverageCode_C8": "01",
+        "SpecialPackagingIndicator_DT": null,
+        "OriginallyPrescribedProductServiceIDQualifier_EJ": null,
+        "OriginallyPrescribedProductServiceCode_EA": null,
+        "OriginallyPrescribedQuantity_EB": null,
+        "AlternateID_CW": null,
+        "ScheduledPrescriptionIDNumber_EK": "06KVYZ11",
+        "UnitOfMeasure_28": null,
+        "LevelOfService_DI": null,
+        "PriorAuthorizationTypeCode_EU": null,
+        "PriorAuthorizationNumberSubmitted_EV": null,
+        "IntermediaryAuthorizationTypeID_EW": null,
+        "IntermediaryAuthorizationID_EX": null,
+        "DispensingStatus_HD": null,
+        "QuantityIntendedToBeDispensed_HF": null,
+        "DaysSupplyIntendedToBeDispensed_HG": null,
+        "DelayReasonCode_NV": "03",
+        "TransactionReferenceNumber_K5": null,
+        "PatientAssignmentIndicator_MT": null,
+        "RouteOfAdministration_E2": null,
+        "CompoundType_G1": null,
+        "ControlNumber_N4": null,
+        "PharmacyServiceType_U7": null
+      },
+      "AM11": {
+        "IngredientCostSubmitted_D9": "218G",
+        "DispensingFeeSubmitted_DC": null,
+        "ProfessionalServiceFeeSubmitted_BE": null,
+        "PatientPaidAmountSubmitted_DX": "0000000{",
+        "IncentiveAmountSubmitted_E3": null,
+        "OtherAmountClaimedSubmittedCount_H7": null,
+        "CH7_07": null,
+        "FlatSalesTaxAmountSubmitted_HA": null,
+        "PercentageSalesTaxAmountSubmitted_GE": null,
+        "PercentageSalesTaxRateSubmitted_HE": null,
+        "PercentageSalesTaxBasisSubmitted_JE": null,
+        "UsualAndCustomaryCharge_DQ": "253G",
+        "GrossAmountDue_DU": "10177E",
+        "BasisOfCostDetermination_DN": null,
+        "MedicaidPaidAmount_N3": null
+      },
+      "AM02": null,
+      "AM03": {
+        "PrescriberIDQualifier_EZ": "01",
+        "PrescriberID_DB": "1023043676",
+        "PrescriberLastName_DR": null,
+        "PrescriberPhoneNumber_PM": null,
+        "PrimaryCareProviderIDQualifier_2E": null,
+        "PrimaryCareProviderID_DL": null,
+        "PrimaryCareProviderLastName_4E": null,
+        "PrescriberFirstName_2J": null,
+        "PrescriberStreetAddress_2K": null,
+        "PrescriberCityAddress_2M": null,
+        "PrescriberStateProvinceAddress_2N": null,
+        "PrescriberZipPostalZone_2P": null
+      },
+      "AM05": {
+        "CoordinationOfBenefitsOtherPaymentsCount_4C": "2",
+        "C4C_02": [
+          {
+            "OtherPayerCoverageType_5C": "DATA1",
+            "OtherPayerIDQualifier_6C": "DATA2",
+            "OtherPayerID_7C": null,
+            "OtherPayerDate_E8": null,
+            "InternalControlNumber_A7": null,
+            "OtherPayerAmountPaidCount_HB": "2",
+            "CHB_07": [
+              {
+                "OtherPayerAmountPaidQualifier_HC": "DATA3",
+                "OtherPayerAmountPaid_DV": "DATA4"
+              },
+              {
+                "OtherPayerAmountPaidQualifier_HC": "DATA5",
+                "OtherPayerAmountPaid_DV": "DATA6"
+              }
+            ],
+            "OtherPayerRejectCount_5E": null,
+            "C5E_09": null,
+            "OtherPayerPatientResponsibilityAmountCount_NR": null,
+            "CNR_11": null,
+            "BenefitStageCount_MU": null,
+            "CMU_13": null
+          },
+          {
+            "OtherPayerCoverageType_5C": "DATA7",
+            "OtherPayerIDQualifier_6C": "DATA8",
+            "OtherPayerID_7C": null,
+            "OtherPayerDate_E8": null,
+            "InternalControlNumber_A7": null,
+            "OtherPayerAmountPaidCount_HB": "2",
+            "CHB_07": [
+              {
+                "OtherPayerAmountPaidQualifier_HC": "DATA9",
+                "OtherPayerAmountPaid_DV": "DATA10"
+              },
+              {
+                "OtherPayerAmountPaidQualifier_HC": "DATA11",
+                "OtherPayerAmountPaid_DV": "DATA12"
+              }
+            ],
+            "OtherPayerRejectCount_5E": null,
+            "C5E_09": null,
+            "OtherPayerPatientResponsibilityAmountCount_NR": null,
+            "CNR_11": null,
+            "BenefitStageCount_MU": null,
+            "CMU_13": null
+          }
+        ]
+      },
+      "AM06": null,
+      "AM08": null,
+      "AM09": null,
+      "AM10": null,
+      "AM13": null,
+      "AM14": null,
+      "AM15": null,
+      "AM16": null
+    }
+  ],
+  "ErrorContext": {
+    "Name": "B1",
+    "ControlNumber": "0466917401",
+    "Edition": "D",
+    "Release": "0",
+    "Index": 1,
+    "ValidatedSegmentsCount": 0,
+    "Codes": [],
+    "Errors": [],
+    "HasErrors": false,
+    "Message": null
+  }
+}
