@@ -38,7 +38,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.XML
         }
 
         /// <summary>
-        /// Serialize an HL7 object to NCPDP using DataContractSerializer
+        /// Serialize an NCPDP object to NCPDP using DataContractSerializer
         /// </summary>
         public static void WithDataContractSerializer()
         {

@@ -21,7 +21,7 @@
             ReadNCPDPFileWithTemplateResolution.RunWithAssemblyFactory();
             ReadNCPDPFileWithTemplateResolution.RunWithTypeFactory();
 
-            //  Read NCPDP file with currupt transmission header
+            //  Read NCPDP file with corrupt transmission header
             ReadNCPDPFileCorrupt.Run();
 
             //  Read NCPDP file with currupt G1
