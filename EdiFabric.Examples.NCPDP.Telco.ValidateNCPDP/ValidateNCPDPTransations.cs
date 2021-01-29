@@ -13,7 +13,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP
     class ValidateNCPDPTransations
     {
         /// <summary>
-        /// Validate HL7 transactions from file
+        /// Validate NCPDP transactions from file
         /// </summary>
         public static void Run()
         {

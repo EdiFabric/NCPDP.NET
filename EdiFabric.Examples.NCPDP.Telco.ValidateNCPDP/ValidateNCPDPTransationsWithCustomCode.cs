@@ -46,8 +46,8 @@ namespace EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP
     }
 
     /// <summary>
-    /// New validation attribute to apply to OBX loops
-    /// Validates that if OBX segment exists, then NTE segment must also exists, otherwise throws an exception
+    /// New validation attribute to apply to AM07 loops
+    /// Validates that if AM03 segment exists, then AM02 segment must also exists, otherwise throws an exception
     /// Preserves the position of the missing segment within the loop, to allow the correct index to be applied in the acknowledgment
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]

@@ -6,7 +6,7 @@ using EdiFabric.Framework.Writers;
 
 namespace EdiFabric.Examples.NCPDP.Telco.WriteNCPDP
 {
-    class WriteHL7Batch
+    class WriteNCPDPBatch
     {
         /// <summary>
         /// Batch multiple messages in the same transmission.

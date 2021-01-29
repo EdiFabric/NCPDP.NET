@@ -50,10 +50,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WriteHL7ToFile.cs" />
-    <Compile Include="WriteHL7ToStream.cs" />
-    <Compile Include="WriteHL7ToStreamAsync.cs" />
-    <Compile Include="WriteHL7Batch.cs" />
+    <Compile Include="WriteNCPDPToFile.cs" />
+    <Compile Include="WriteNCPDPToStream.cs" />
+    <Compile Include="WriteNCPDPToStreamAsync.cs" />
+    <Compile Include="WriteNCPDPBatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

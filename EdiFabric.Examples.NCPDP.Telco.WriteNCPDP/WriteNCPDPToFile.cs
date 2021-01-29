@@ -5,7 +5,7 @@ using EdiFabric.Framework.Writers;
 
 namespace EdiFabric.Examples.NCPDP.Telco.WriteNCPDP
 {
-    class WriteHL7ToFile
+    class WriteNCPDPToFile
     {
         /// <summary>
         /// Generate and write NCPDP document to a file

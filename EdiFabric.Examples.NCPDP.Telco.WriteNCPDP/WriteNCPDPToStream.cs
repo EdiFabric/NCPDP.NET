@@ -6,12 +6,12 @@ using EdiFabric.Framework.Writers;
 
 namespace EdiFabric.Examples.NCPDP.Telco.WriteNCPDP
 {
-    class WriteHL7ToStreamAsync
+    class WriteNCPDPToStream
     {
         /// <summary>
-        /// Generate and write NCPDP document to a stream async
+        /// Generate and write NCPDP document to a stream
         /// </summary>
-        public static async void Run()
+        public static void Run()
         {
             Debug.WriteLine("******************************");
             Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
@@ -24,7 +24,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.WriteNCPDP
                     //  Write the transmission header
                     writer.Write(SegmentBuilders.BuildTransmissionHeader());
                     //  Write the claim
-                    await writer.WriteAsync(SegmentBuilders.BuildClaim());
+                    writer.Write(SegmentBuilders.BuildClaim());
                 }
 
                 Debug.Write(stream.LoadToString());

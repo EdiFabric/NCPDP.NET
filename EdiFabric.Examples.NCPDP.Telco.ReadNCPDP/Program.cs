@@ -24,7 +24,7 @@
             //  Read NCPDP file with corrupt transmission header
             ReadNCPDPFileCorrupt.Run();
 
-            //  Read NCPDP file with currupt G1
+            //  Read NCPDP file with corrupt G1
             ReadNCPDPFileCorrupt.Run2();
 
             //  Split transactions to repeating loops
