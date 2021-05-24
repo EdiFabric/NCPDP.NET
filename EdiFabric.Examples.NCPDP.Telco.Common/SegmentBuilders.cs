@@ -43,9 +43,9 @@ namespace EdiFabric.Examples.NCPDP.Telco.Common
             result.G1.TransactionCode_4 = "B1";
             result.G1.ProcessorControlNumber_5 = processorNumber;
             result.G1.TransactionCount_6 = "1";
-            result.G1.ReversalRequest_7 = reversalReq;
-            result.G1.BillingRequest_8 = billingReq;
-            result.G1.PredeterminationofBenefitsRequest_9 = preReq;
+            result.G1.ServiceProviderIDQualifier_7 = reversalReq;
+            result.G1.ServiceProviderID_8 = billingReq;
+            result.G1.DateOfService_9 = preReq;
             result.G1.SoftwareVendorCertificationID_10 = "";
 
             //  AM04 Loop
