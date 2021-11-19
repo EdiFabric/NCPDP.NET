@@ -53,7 +53,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP
     [AttributeUsage(AttributeTargets.Property)]
     public class AM07LoopValidationAttribute : ValidationAttribute
     {
-        public AM07LoopValidationAttribute() : base(10)
+        public AM07LoopValidationAttribute() : base(10, ValidationLevel.InterSegment_SNIP4)
         {
         }
 
