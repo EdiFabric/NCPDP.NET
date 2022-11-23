@@ -49,7 +49,7 @@ The following templates are available out-of-the-box:
 
 [NCPDP Telecommunications](https://support.edifabric.com/hc/en-us/articles/360017128517-NCPDP-Telecommunications-Version-D-0)  
 
-For an interactive view of all templates go to EdiNation (no registration is required):
+For an interactive view of all templates go to EdiNation (no registration is required):  
 [EdiNation](https://edination.com/edi-formats.html)
 
 ## 9. Trial use
