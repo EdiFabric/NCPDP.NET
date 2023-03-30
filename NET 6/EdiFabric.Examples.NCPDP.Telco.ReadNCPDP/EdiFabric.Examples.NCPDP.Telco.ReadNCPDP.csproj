@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\Program.cs" Link="Program.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileCorrupt.cs" Link="ReadNCPDPFileCorrupt.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileSplitting.cs" Link="ReadNCPDPFileSplitting.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileStreaming.cs" Link="ReadNCPDPFileStreaming.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileStreamingAsync.cs" Link="ReadNCPDPFileStreamingAsync.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileToEnd.cs" Link="ReadNCPDPFileToEnd.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileToEndAsync.cs" Link="ReadNCPDPFileToEndAsync.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileToEndWithResponse.cs" Link="ReadNCPDPFileToEndWithResponse.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileWithInheritedTemplate.cs" Link="ReadNCPDPFileWithInheritedTemplate.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\ReadNCPDPFileWithTemplateResolution.cs" Link="ReadNCPDPFileWithTemplateResolution.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EdiFabric.Examples.NCPDP.Telco.Common\EdiFabric.Examples.NCPDP.Telco.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EdiFabric">
+      <HintPath>..\..\..\edifabric\net6.0\EdiFabric.dll</HintPath>
+    </Reference>
+    <Reference Include="EdiFabric.Templates.Ncpdp">
+      <HintPath>..\..\..\edifabric\net6.0\EdiFabric.Templates.Ncpdp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

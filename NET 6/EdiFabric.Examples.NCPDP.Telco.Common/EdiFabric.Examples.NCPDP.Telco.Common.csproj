@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\SegmentBuilders.cs" Link="SegmentBuilders.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\SerialKey.cs" Link="SerialKey.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\StreamExtensions.cs" Link="StreamExtensions.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\XmlExtensions.cs" Link="XmlExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EdiFabric">
+      <HintPath>..\..\..\edifabric\net6.0\EdiFabric.dll</HintPath>
+    </Reference>
+    <Reference Include="EdiFabric.Templates.Ncpdp">
+      <HintPath>..\..\..\edifabric\net6.0\EdiFabric.Templates.Ncpdp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
