@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E1FD9557-3B88-4DD4-B4E2-351B24720410}</ProjectGuid>
+    <ProjectGuid>{9AAB971C-8632-45A1-9F01-D07E8A09ED51}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EdiFabric.Examples.NCPDP.Telco.WriteNCPDP</RootNamespace>
-    <AssemblyName>EdiFabric.Examples.NCPDP.Telco.WriteNCPDP</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>EdiFabric.Examples.NCPDP.Telco.Demo</RootNamespace>
+    <AssemblyName>EdiFabric.Examples.NCPDP.Telco.Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,12 +34,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EdiFabric, Version=10.4.3.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
-      <HintPath>..\..\edifabric-trial\net45\EdiFabric.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\edifabric\net48\EdiFabric.dll</HintPath>
     </Reference>
     <Reference Include="EdiFabric.Templates.Ncpdp, Version=2.6.7.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\edifabric-trial\net45\EdiFabric.Templates.Ncpdp.dll</HintPath>
+      <HintPath>..\..\..\edifabric\net48\EdiFabric.Templates.Ncpdp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,10 +53,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WriteNCPDPToFile.cs" />
-    <Compile Include="WriteNCPDPToStream.cs" />
-    <Compile Include="WriteNCPDPToStreamAsync.cs" />
-    <Compile Include="WriteNCPDPBatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

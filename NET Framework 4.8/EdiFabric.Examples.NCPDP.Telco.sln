@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30517.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdiFabric.Examples.NCPDP.Telco.Demo", "EdiFabric.Examples.NCPDP.Telco.Demo\EdiFabric.Examples.NCPDP.Telco.Demo.csproj", "{9AAB971C-8632-45A1-9F01-D07E8A09ED51}"
 EndProject
@@ -9,22 +9,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdiFabric.Examples.NCPDP.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Getting started", "_Getting started", "{8D74671E-AE93-44DC-8EFF-18254EBC2AB2}"
 	ProjectSection(SolutionItems) = preProject
-		README.txt = README.txt
+		..\README.txt = ..\README.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples by feature", "Examples by feature", "{F49DDD27-0B57-418D-9A09-E8CDB55A7741}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample files", "Sample files", "{4F9357EF-D74A-43C1-845E-997764E85BF3}"
 	ProjectSection(SolutionItems) = preProject
-		Files\ClaimBilling = Files\ClaimBilling
-		Files\ClaimBilling.json = Files\ClaimBilling.json
-		Files\ClaimBilling.xml = Files\ClaimBilling.xml
-		Files\ClaimBilling2.xml = Files\ClaimBilling2.xml
-		Files\ClaimBillingAndResponse = Files\ClaimBillingAndResponse
-		Files\ClaimBillingCorruptG1 = Files\ClaimBillingCorruptG1
-		Files\ClaimBillingCorruptHeader = Files\ClaimBillingCorruptHeader
-		Files\ClaimBillingMultiLoop = Files\ClaimBillingMultiLoop
-		Files\ClaimBillings = Files\ClaimBillings
+		..\Files\ClaimBilling = ..\Files\ClaimBilling
+		..\Files\ClaimBilling.json = ..\Files\ClaimBilling.json
+		..\Files\ClaimBilling.xml = ..\Files\ClaimBilling.xml
+		..\Files\ClaimBilling2.xml = ..\Files\ClaimBilling2.xml
+		..\Files\ClaimBillingAndResponse = ..\Files\ClaimBillingAndResponse
+		..\Files\ClaimBillingCorruptG1 = ..\Files\ClaimBillingCorruptG1
+		..\Files\ClaimBillingCorruptHeader = ..\Files\ClaimBillingCorruptHeader
+		..\Files\ClaimBillingMultiLoop = ..\Files\ClaimBillingMultiLoop
+		..\Files\ClaimBillings = ..\Files\ClaimBillings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdiFabric.Examples.NCPDP.Telco.ReadNCPDP", "EdiFabric.Examples.NCPDP.Telco.ReadNCPDP\EdiFabric.Examples.NCPDP.Telco.ReadNCPDP.csproj", "{06F4C55D-4B56-438A-A856-56CD06A4A454}"

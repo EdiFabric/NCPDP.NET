@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9AAB971C-8632-45A1-9F01-D07E8A09ED51}</ProjectGuid>
+    <ProjectGuid>{06F4C55D-4B56-438A-A856-56CD06A4A454}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EdiFabric.Examples.NCPDP.Telco.Demo</RootNamespace>
-    <AssemblyName>EdiFabric.Examples.NCPDP.Telco.Demo</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>EdiFabric.Examples.NCPDP.Telco.ReadNCPDP</RootNamespace>
+    <AssemblyName>EdiFabric.Examples.NCPDP.Telco.ReadNCPDP</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,15 +34,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EdiFabric, Version=10.4.3.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
-      <HintPath>..\..\edifabric-trial\net45\EdiFabric.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\edifabric\net48\EdiFabric.dll</HintPath>
     </Reference>
     <Reference Include="EdiFabric.Templates.Ncpdp, Version=2.6.7.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\edifabric-trial\net45\EdiFabric.Templates.Ncpdp.dll</HintPath>
+      <HintPath>..\..\..\edifabric\net48\EdiFabric.Templates.Ncpdp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +54,15 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadNCPDPFileToEndWithResponse.cs" />
+    <Compile Include="ReadNCPDPFileWithInheritedTemplate.cs" />
+    <Compile Include="ReadNCPDPFileStreaming.cs" />
+    <Compile Include="ReadNCPDPFileStreamingAsync.cs" />
+    <Compile Include="ReadNCPDPFileCorrupt.cs" />
+    <Compile Include="ReadNCPDPFileSplitting.cs" />
+    <Compile Include="ReadNCPDPFileToEnd.cs" />
+    <Compile Include="ReadNCPDPFileToEndAsync.cs" />
+    <Compile Include="ReadNCPDPFileWithTemplateResolution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
