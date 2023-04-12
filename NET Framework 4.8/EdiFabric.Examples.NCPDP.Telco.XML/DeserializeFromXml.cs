@@ -18,7 +18,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.XML
             Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
             Debug.WriteLine("******************************");
 
-            var ediStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBilling.xml");
+            var ediStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBilling.xml");
 
             var xml = XElement.Load(ediStream);
             var transaction = xml.Deserialize<TSB1>();
@@ -33,7 +33,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.XML
             Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
             Debug.WriteLine("******************************");
 
-            var ediStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBilling2.xml");
+            var ediStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBilling2.xml");
 
             var xml = XElement.Load(ediStream);
             var transaction = xml.DeserializeDataContract<TSB1>();

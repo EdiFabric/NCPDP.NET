@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using EdiFabric.Core.Model.Edi;
+using EdiFabric.Examples.NCPDP.Telco.Common;
 using EdiFabric.Framework.Readers;
 using EdiFabric.Templates.TelcoD0;
 
@@ -20,7 +21,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
             Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
             Debug.WriteLine("******************************");
 
-            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBillingMultiLoop");
+            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBillingMultiLoop");
 
             //  The split is driven by setting which class to split by in the template.
             //  Set the class to inherit from EdiItem and the parser will automatically split by it.

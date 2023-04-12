@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using EdiFabric.Core.Model.Telco;
+using EdiFabric.Examples.NCPDP.Telco.Common;
 using EdiFabric.Framework.Readers;
 using EdiFabric.Templates.TelcoD0;
 
@@ -19,7 +20,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
             Debug.WriteLine("******************************");
 
             //  1.  Load to a stream 
-            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBillings");
+            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBillings");
 
             //  2.  Read multiple messages batched up in the same transmission
             using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))

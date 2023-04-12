@@ -17,7 +17,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.JSON
             Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
             Debug.WriteLine("******************************");
 
-            var ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBilling.json");
+            var ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBilling.json");
             var transaction = Newtonsoft.Json.JsonConvert.DeserializeObject<TSB1>(ncpdpStream.LoadToString());
         }
     }

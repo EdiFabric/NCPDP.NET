@@ -7,6 +7,7 @@ using System.Reflection;
 using EdiFabric.Core.Model.Edi;
 using EdiFabric.Core.Model.Edi.ErrorContexts;
 using EdiFabric.Core.Model.Telco;
+using EdiFabric.Examples.NCPDP.Telco.Common;
 using EdiFabric.Framework.Readers;
 using EdiFabric.Templates.TelcoD0;
 
@@ -23,7 +24,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP
             Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
             Debug.WriteLine("******************************");
 
-            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBilling");
+            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBilling");
 
             List<IEdiItem> ncpdpItems;
             using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))

@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using EdiFabric.Core.Annotations.Edi;
 using EdiFabric.Core.Model.Edi;
 using EdiFabric.Core.Model.Edi.ErrorContexts;
+using EdiFabric.Examples.NCPDP.Telco.Common;
 using EdiFabric.Framework.Readers;
 using EdiFabric.Templates.TelcoD0;
 
@@ -28,7 +29,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP
             Dictionary<Type, Type> codeSetMap = new Dictionary<Type, Type>();
             codeSetMap.Add(typeof(TELCO_ID_C6), typeof(TELCO_ID_C6PartnerA));
 
-            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBillings");
+            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBillings");
 
             List<IEdiItem> ncpdpItems;
             using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))
@@ -65,7 +66,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP
             var codeSetMap = new Dictionary<string, List<string>>();
             codeSetMap.Add("TELCO_ID_C6", new List<string> { "0", "1", "5" });
 
-            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBilling");
+            Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBilling");
 
             List<IEdiItem> ncpdpItems;
             using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))

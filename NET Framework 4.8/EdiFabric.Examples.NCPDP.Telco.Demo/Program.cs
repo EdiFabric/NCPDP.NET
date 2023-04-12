@@ -1,5 +1,6 @@
 ﻿using EdiFabric.Core.Model.Edi;
 using EdiFabric.Core.Model.Edi.ErrorContexts;
+using EdiFabric.Examples.NCPDP.Telco.Common;
 using EdiFabric.Framework.Readers;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +27,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.Demo
         public static void Translate_NCPDP_D0()
         {
             //  Change the path to point to your own file to test with
-            var path = File.OpenRead(Directory.GetCurrentDirectory() + @"\..\..\..\Files\ClaimBilling");
+            var path = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBilling");
 
             List<IEdiItem> ediItems;
             using (var reader = new NcpdpTelcoReader(path, "EdiFabric.Templates.Ncpdp"))
