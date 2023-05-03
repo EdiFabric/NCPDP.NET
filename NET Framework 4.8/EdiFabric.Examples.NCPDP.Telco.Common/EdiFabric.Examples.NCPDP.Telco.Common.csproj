@@ -36,9 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\edifabric\net48\EdiFabric.dll</HintPath>
     </Reference>
-    <Reference Include="EdiFabric.Templates.Ncpdp, Version=2.6.7.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
+    <Reference Include="EdiFabric.Templates.Ncpdp, Version=2.7.0.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\edifabric\net48\EdiFabric.Templates.Ncpdp.dll</HintPath>
+      <HintPath>..\..\..\edifabric\net45\EdiFabric.Templates.Ncpdp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
