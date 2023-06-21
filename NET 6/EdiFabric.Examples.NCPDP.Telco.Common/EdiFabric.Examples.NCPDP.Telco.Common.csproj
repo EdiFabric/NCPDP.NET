@@ -15,12 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EdiFabric">
-      <HintPath>..\..\..\edifabric\net6.0\EdiFabric.dll</HintPath>
-    </Reference>
-    <Reference Include="EdiFabric.Templates.Ncpdp">
-      <HintPath>..\..\..\edifabric\net6.0\EdiFabric.Templates.Ncpdp.dll</HintPath>
-    </Reference>
+    <PackageReference Include="EdiFabric" Version="10.5.2" />
+    <PackageReference Include="EdiFabric.Templates.Ncpdp" Version="2.7.1" />
   </ItemGroup>
 
 </Project>
