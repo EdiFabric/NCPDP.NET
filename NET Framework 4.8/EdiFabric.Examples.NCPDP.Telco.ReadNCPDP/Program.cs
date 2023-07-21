@@ -1,10 +1,12 @@
-﻿namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
+﻿using EdiFabric.Examples.NCPDP.Telco.Common;
+
+namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
 {
     class Program
     {
         static void Main(string[] args)
         {
-            SerialKey.Set(Common.SerialKey.Get());
+            TokenFileCache.Set();
 
             //  Read NCPDP file to the end
             ReadNCPDPFileToEnd.Run();

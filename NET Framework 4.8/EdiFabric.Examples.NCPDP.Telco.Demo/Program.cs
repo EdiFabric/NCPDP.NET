@@ -19,7 +19,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.Demo
 
             //  If you need a different NCPDP version or transaction, please contact us at https://support.edifabric.com/hc/en-us/requests/new, EdiFabric supports all versions and transactions for NCPDP.
 
-            SerialKey.Set(Common.SerialKey.Get());
+            TokenFileCache.Set();
 
             Translate_NCPDP_D0();
         }

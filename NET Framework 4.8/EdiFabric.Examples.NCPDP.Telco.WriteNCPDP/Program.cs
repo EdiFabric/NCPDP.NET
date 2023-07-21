@@ -1,10 +1,12 @@
-﻿namespace EdiFabric.Examples.NCPDP.Telco.WriteNCPDP
+﻿using EdiFabric.Examples.NCPDP.Telco.Common;
+
+namespace EdiFabric.Examples.NCPDP.Telco.WriteNCPDP
 {
     class Program
     {
         static void Main(string[] args)
         {
-            SerialKey.Set(Common.SerialKey.Get());
+            TokenFileCache.Set();
 
             //  Write EDI to stream and then to string or file
             WriteNCPDPToStream.Run();

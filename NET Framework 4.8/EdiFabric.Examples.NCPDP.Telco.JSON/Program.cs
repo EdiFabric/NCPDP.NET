@@ -1,10 +1,12 @@
-﻿namespace EdiFabric.Examples.NCPDP.Telco.JSON
+﻿using EdiFabric.Examples.NCPDP.Telco.Common;
+
+namespace EdiFabric.Examples.NCPDP.Telco.JSON
 {
     class Program
     {
         static void Main(string[] args)
         {
-            SerialKey.Set(Common.SerialKey.Get());
+            TokenFileCache.Set();
 
             //  Serialize to JSON
             SerializeToJson.Run();
