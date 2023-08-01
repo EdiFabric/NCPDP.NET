@@ -6,7 +6,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ValidateNCPDP
     {
         static void Main(string[] args)
         {
-            TokenFileCache.Set();
+            SerialKey.Set(Config.TrialSerialKey);
 
             //  Validate custom NCPDP codes
             ValidateCustomNCPDPCodes.Run();

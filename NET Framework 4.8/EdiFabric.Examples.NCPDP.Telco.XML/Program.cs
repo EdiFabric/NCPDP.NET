@@ -6,7 +6,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.XML
     {
         static void Main(string[] args)
         {
-            TokenFileCache.Set();
+            SerialKey.Set(Config.TrialSerialKey);
 
             //  Serialize to XML
             SerializeToXml.WithXmlSerializer();

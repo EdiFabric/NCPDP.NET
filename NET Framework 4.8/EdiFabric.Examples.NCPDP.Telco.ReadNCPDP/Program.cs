@@ -6,7 +6,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
     {
         static void Main(string[] args)
         {
-            TokenFileCache.Set();
+            SerialKey.Set(Config.TrialSerialKey);
 
             //  Read NCPDP file to the end
             ReadNCPDPFileToEnd.Run();
