@@ -21,7 +21,7 @@ var transactions = ncpdpItems.OfType<TSB1>();
 
 ## 2. Requirements
 - Visual Studio, compatible with the supported .NET versions. [Download Visual Studio](https://visualstudio.microsoft.com/downloads/).
-- Minimum .NET Framework 4.8 or .NET 6. Downgrading to .NET Framework 4.5 is possible by changing the target framework for each project.
+- Minimum .NET Framework 4.8 or .NET 6. 
 
 ## 3. Serial Key and EdiFabric trial DLLs
 All projects reference EdiFabric EDI Tools as NuGet packages from nuget.org. If you wish to install EdiFabric EDI Tools as DLLs, download the trial DLLs from [here](https://support.edifabric.com/hc/en-us/articles/360000280532-Free-code-to-master-you-EDI-files).
@@ -46,7 +46,7 @@ The following templates are available out-of-the-box:
 [NCPDP Telecommunications](https://support.edifabric.com/hc/en-us/articles/360017128517-NCPDP-Telecommunications-Version-D-0)  
 
 For an interactive view of all templates go to EdiNation (no registration is required):  
-[EdiNation](https://edination.com/edi-formats.html)
+[EdiNation](https://edination.edifabric.com/edi-spec-library.html)
 
 ## 9. Trial use
 The trial serial key is valid for 14 days, and using the product with a trial license is subject to EdiFabric's license terms available at https://www.edifabric.com/files/eula.pdf. Upon expiry, the product will begin throwing exceptions. To continue using the trial and the examples, you'll need to request a trial extension. 
@@ -68,6 +68,6 @@ The trial serial key is valid for 14 days, and using the product with a trial li
 
 [Support](https://support.edifabric.com/hc/en-us/requests/new)
 
-Last updated on June 20, 2023
-### 2023 © EdiFabric
+Last updated on January 29, 2026
+### 2026 © EdiFabric
 
