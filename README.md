@@ -106,7 +106,7 @@ using (var stream = new MemoryStream())
 | `EdiFabric.Examples.NCPDP.Telco.JSON` | Serialize and deserialize JSON |
 | `EdiFabric.Examples.NCPDP.Telco.XML` | `XmlSerializer` and `DataContractSerializer` |
 
-For another version on a paid plan, add that model as C# files. See [EDI templates](#edi-templates).
+For another transaction, download its C# template from the EDI spec library. See [EDI templates](#edi-templates).
 
 ## Licensing
 
@@ -186,14 +186,51 @@ License failures throw `LicenseException`. `ErrorCode` is the number below, and 
 
 ## EDI templates
 
-The models published on NuGet, such as **EdiFabric.Templates.Ncpdp**, **EdiFabric.Templates.X12**, and **EdiFabric.Templates.Edifact**, are for evaluation only. They are a Community plan limitation. These examples reference **EdiFabric.Templates.Ncpdp** so you can run the samples on Community.
+These examples reference **EdiFabric.Templates.Ncpdp** from NuGet, so they run without any setup. In your own application, use the C# templates from the [EDI spec library](https://www.edifabric.com/specs/index.html). The templates are the same on every plan, Community included. When you upgrade, you change only the serial key, and your template projects stay as they are.
 
-Paid plans provide every template as plain C# files. Add them to the solution by following [How to create EDI template projects](https://www.edifabric.com/docs/edifabric-net/edi-templates.html). For evaluation and the Community plan, you can still download the templates in compiled form by following the same article.
+### Find and download a template
 
-The same classes validate as well as parse. EdiFabric supports the NCPDP Telecommunications versions. If a transaction is missing, [ask for it](https://www.edifabric.com/docs/index.html).
+Every transaction in the [EDI spec library](https://www.edifabric.com/specs/index.html) has its template as C#, and you can download it without an account.
+
+1. Open the [EDI spec library](https://www.edifabric.com/specs/index.html), select the standard and version, for example NCPDP Telecommunication D.0, and open the transaction, for example [B1](https://www.edifabric.com/specs/ncpdp/telecommunication-d0/b1.html).
+2. On the **ediFabric .NET** tab, select **Download C#** for the transaction class, `TSB1`, and **Common files** for the segments, composites and codes of the version. The common files are the same for every transaction in the version, so you download them once.
+
+![The Download C# and Common files buttons on the ediFabric .NET tab of a transaction in the EDI spec library](template.png)
+
+Class names are TS plus the transaction id, in a namespace for the standard and version. For example, B1 is `EdiFabric.Templates.TelcoD0.TSB1`.
+
+### Add the templates to your solution
+
+Put one version, or one trading partner, in one class library.
+
+1. Add a class library to the solution and install EdiFabric into it with `dotnet add package EdiFabric`.
+2. On .NET Framework only, reference `System.Runtime.Serialization` and `System.Xml.Serialization`.
+3. Unzip the downloads. Add the transaction file, for example `EF_TELCO_D0_B1.cs`, and every file in the Common folder of the version.
+4. Reference the class library from your application, and pass its assembly name to the reader instead of `EdiFabric.Templates.Ncpdp`. If the project is `ClassLibrary1`:
+
+```csharp
+using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "ClassLibrary1"))
+```
+
+It is the assembly name, not the namespace of `TSB1`. The full steps are in [EDI templates](https://www.edifabric.com/docs/edifabric-net/edi-templates.html).
+
+### Customize a template for a trading partner
+
+When a trading partner changes the standard, for example by making a segment mandatory, build the change in the [EDI Spec Builder](https://www.edifabric.com/spec-builder/index.html):
+
+1. Open the transaction in the [EDI spec library](https://www.edifabric.com/specs/index.html) and select **Customize in Spec Builder**. Name the copy, change it, and select **Update**.
+2. Select your spec in the EDI Spec Builder, open the **ediFabric .NET** tab, and select **Download C#**.
+3. Add the file to its own class library, as in [Add the templates to your solution](#add-the-templates-to-your-solution), and pass that library's assembly name to the reader.
+
+![The Download C# button on the ediFabric .NET tab of a custom spec in the EDI Spec Builder](template-builder.png)
+
+A custom template is one C# file, generated from the saved spec. It includes its own segments, composites and codes, so it doesn't need the common files. You can also change the C# of any template directly. See [How to modify EDI templates](https://www.edifabric.com/docs/edifabric-net/standardize-edi-with-templates.html#how-to-modify-edi-templates).
+
+The same classes parse, generate and validate. EdiFabric supports the NCPDP Telecommunication versions. If a transaction is missing, [ask for it](https://support.edifabric.com/hc/en-us/requests/new).
 
 - [NCPDP Telecommunications D.0](https://www.edifabric.com/docs/standards/ncpdp-telecommunications-d0.html)
-- [EdiNation spec library](https://edination.edifabric.com/edi-spec-library.html) (no registration)
+- [EDI spec library](https://www.edifabric.com/specs/index.html) (no registration)
+- [EDI Spec Builder](https://www.edifabric.com/spec-builder/index.html)
 
 ## Warranty
 
