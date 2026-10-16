@@ -25,7 +25,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
             Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBillingCorruptHeader");
 
             List<IEdiItem> ncpdpItems;
-            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))
+            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Examples.NCPDP.Telco.Common"))
                 ncpdpItems = ncpdpReader.ReadToEnd().ToList();
 
             var readerErrors = ncpdpItems.OfType<ReaderErrorContext>();
@@ -54,7 +54,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
             Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBillingCorruptG1");
 
             List<IEdiItem> ncpdpItems;
-            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))
+            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Examples.NCPDP.Telco.Common"))
                 ncpdpItems = ncpdpReader.ReadToEnd().ToList();
 
             var readerErrors = ncpdpItems.OfType<ReaderErrorContext>();

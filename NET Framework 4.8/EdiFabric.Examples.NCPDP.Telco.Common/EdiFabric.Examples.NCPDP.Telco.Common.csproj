@@ -35,9 +35,6 @@
     <Reference Include="EdiFabric, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
       <HintPath>..\packages\EdiFabric.11.0.0\lib\net48\EdiFabric.dll</HintPath>
     </Reference>
-    <Reference Include="EdiFabric.Templates.Ncpdp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=30198c5f4974e51a, processorArchitecture=MSIL">
-      <HintPath>..\packages\EdiFabric.Templates.Ncpdp.3.0.0\lib\net48\EdiFabric.Templates.Ncpdp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -50,6 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="EF_TELCO_D0_B1.cs" />
+    <Compile Include="EF_TELCO_D0_Codes.cs" />
+    <Compile Include="EF_TELCO_D0_ComplexElements.cs" />
+    <Compile Include="EF_TELCO_D0_RESPONSE.cs" />
+    <Compile Include="EF_TELCO_D0_Segments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SegmentBuilders.cs" />
     <Compile Include="TokenFileCache.cs" />

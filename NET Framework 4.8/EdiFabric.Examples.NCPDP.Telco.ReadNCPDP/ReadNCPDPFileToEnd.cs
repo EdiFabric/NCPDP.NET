@@ -26,7 +26,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
             Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBillings");
 
             List<IEdiItem> ncpdpItems;
-            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))
+            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Examples.NCPDP.Telco.Common"))
                 ncpdpItems = ncpdpReader.ReadToEnd().ToList();
 
             var claims = ncpdpItems.OfType<TSB1>();

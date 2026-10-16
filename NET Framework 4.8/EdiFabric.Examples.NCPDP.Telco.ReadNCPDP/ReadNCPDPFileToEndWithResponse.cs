@@ -27,7 +27,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
                 ncpdpItems = ncpdpReader.ReadToEnd().ToList();
 
             var claims = ncpdpItems.OfType<TSB1>();
-            var rsponses = ncpdpItems.OfType<TSRESPONSE>();
+            var responses = ncpdpItems.OfType<TSRESPONSE>();
         }
 
         static TypeInfo TypeFactory(TransmissionHeader transmissionHeader, TransactionHeader transactionHeader, ResponseHeader responseHeader)

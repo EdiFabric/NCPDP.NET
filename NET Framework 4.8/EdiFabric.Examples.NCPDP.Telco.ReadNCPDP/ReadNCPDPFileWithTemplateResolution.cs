@@ -36,7 +36,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
         public static Assembly AssemblyFactory(MessageContext messageContext)
         {
             if (messageContext.Version == "D0")
-                return Assembly.Load("EdiFabric.Templates.Ncpdp");
+                return Assembly.Load("EdiFabric.Examples.NCPDP.Telco.Common");
 
             throw new Exception(string.Format("Version {0} is not supported.", messageContext.Version));
         }

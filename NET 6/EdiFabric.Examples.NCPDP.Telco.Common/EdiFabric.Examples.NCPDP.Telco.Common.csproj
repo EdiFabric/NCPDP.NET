@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\Config.cs" Link="Config.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\EF_TELCO_D0_B1.cs" Link="EF_TELCO_D0_B1.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\EF_TELCO_D0_Codes.cs" Link="EF_TELCO_D0_Codes.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\EF_TELCO_D0_ComplexElements.cs" Link="EF_TELCO_D0_ComplexElements.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\EF_TELCO_D0_RESPONSE.cs" Link="EF_TELCO_D0_RESPONSE.cs" />
+    <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\EF_TELCO_D0_Segments.cs" Link="EF_TELCO_D0_Segments.cs" />
     <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\SegmentBuilders.cs" Link="SegmentBuilders.cs" />
     <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\StreamExtensions.cs" Link="StreamExtensions.cs" />
     <Compile Include="..\..\NET Framework 4.8\EdiFabric.Examples.NCPDP.Telco.Common\TokenFileCache.cs" Link="TokenFileCache.cs" />
@@ -16,7 +21,6 @@
 
   <ItemGroup>
     <PackageReference Include="EdiFabric" Version="11.0.0" />
-    <PackageReference Include="EdiFabric.Templates.Ncpdp" Version="3.0.0" />
   </ItemGroup>
 
 </Project>

@@ -23,7 +23,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
             Stream ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBillings");
 
             //  2.  Read multiple messages batched up in the same transmission
-            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))
+            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Examples.NCPDP.Telco.Common"))
             {
                 while (ncpdpReader.Read())
                 {

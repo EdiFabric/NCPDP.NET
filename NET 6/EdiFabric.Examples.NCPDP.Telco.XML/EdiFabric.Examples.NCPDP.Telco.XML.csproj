@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <PackageReference Include="EdiFabric" Version="11.0.0" />
-    <PackageReference Include="EdiFabric.Templates.Ncpdp" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

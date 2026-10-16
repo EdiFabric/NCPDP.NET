@@ -26,7 +26,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
             //  The split is driven by setting which class to split by in the template.
             //  Set the class to inherit from EdiItem and the parser will automatically split by it.
             List<IEdiItem> ncpdpItems;
-            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Templates.Ncpdp"))
+            using (var ncpdpReader = new NcpdpTelcoReader(ncpdpStream, "EdiFabric.Examples.NCPDP.Telco.Common"))
                 ncpdpItems = ncpdpReader.ReadToEnd().ToList();
 
             var claims = ncpdpItems.OfType<TSB1>();

@@ -1,8 +1,10 @@
-﻿using System.Diagnostics;
+﻿using EdiFabric.Examples.NCPDP.Telco.Common;
+using EdiFabric.Templates.TelcoD0;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using EdiFabric.Examples.NCPDP.Telco.Common;
-using EdiFabric.Templates.TelcoD0;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text.Json;
 
 namespace EdiFabric.Examples.NCPDP.Telco.JSON
 {
@@ -18,7 +20,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.JSON
             Debug.WriteLine("******************************");
 
             var ncpdpStream = File.OpenRead(Directory.GetCurrentDirectory() + Config.TestFilesPath + @"\ClaimBilling.json");
-            var transaction = Newtonsoft.Json.JsonConvert.DeserializeObject<TSB1>(ncpdpStream.LoadToString());
+            var transaction = JsonSerializer.Deserialize<TSB1>(ncpdpStream.LoadToString());
         }
     }
 }
