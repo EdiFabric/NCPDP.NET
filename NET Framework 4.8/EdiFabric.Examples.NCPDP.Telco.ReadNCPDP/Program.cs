@@ -7,7 +7,7 @@ namespace EdiFabric.Examples.NCPDP.Telco.ReadNCPDP
     {
         static void Main(string[] args)
         {
-            License.SetSerial(Config.TrialSerialKey);
+            License.EnsureToken(Config.TrialSerialKey, 3600);
 
             //  Read NCPDP file to the end
             ReadNCPDPFileToEnd.Run();

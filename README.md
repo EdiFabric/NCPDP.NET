@@ -1,10 +1,10 @@
 # EdiFabric C# .NET Examples for NCPDP Telecommunications
 
-**EdiFabric 11.0.0** is a .NET SDK that parses, generates, validates, and splits EDI files. These examples cover **NCPDP Telecommunications D.0**.
+**EdiFabric 11.2.0** is a .NET SDK that parses, generates, validates, and splits EDI files. These examples cover **NCPDP Telecommunications D.0**.
 
 EdiFabric does not include communication components (AS2 or SFTP), a dashboard, or a UI. It is a library you call from your own application.
 
-The .NET 6 projects compile the same sources as the .NET Framework 4.8 projects. Both solutions reference [EdiFabric 11.0.0](https://www.nuget.org/packages/EdiFabric) from NuGet. The examples target .NET 6 for backward compatibility. EdiFabric 11.0.0 also ships targets for .NET 8, .NET 9, and .NET 10. To evaluate one of those, change `TargetFramework` in the project file and rebuild.
+The .NET 6 projects compile the same sources as the .NET Framework 4.8 projects. Both solutions reference [EdiFabric 11.2.0](https://www.nuget.org/packages/EdiFabric) from NuGet. The examples target .NET 6 for backward compatibility. EdiFabric 11.2.0 also ships targets for .NET 8, .NET 9, and .NET 10. To evaluate one of those, change `TargetFramework` in the project file and rebuild.
 
 | Path | Purpose |
 | --- | --- |
@@ -24,7 +24,7 @@ EdiFabric reads and writes NCPDP Telecommunications through templates: C# classe
 ## Requirements
 
 - Visual Studio 2022, or the .NET SDK. [Download Visual Studio](https://visualstudio.microsoft.com/downloads/).
-- .NET 6 for `NET 6/EdiFabric.Examples.NCPDP.Telco.sln`. The projects set `<TargetFramework>net6.0</TargetFramework>` so they stay compatible with existing .NET 6 apps. EdiFabric 11.0.0 also provides `net8.0`, `net9.0`, and `net10.0`. To evaluate a later version, change that property (for example to `net8.0`) and rebuild.
+- .NET 6 for `NET 6/EdiFabric.Examples.NCPDP.Telco.sln`. The projects set `<TargetFramework>net6.0</TargetFramework>` so they stay compatible with existing .NET 6 apps. EdiFabric 11.2.0 also provides `net8.0`, `net9.0`, and `net10.0`. To evaluate a later version, change that property (for example to `net8.0`) and rebuild.
 - .NET Framework 4.8 for `NET Framework 4.8/EdiFabric.Examples.NCPDP.Telco.sln`.
 
 All projects can be evaluated with the demo serial key `bd96a836feca45cb91c86ee65d281f52` without creating an account. It is already set in `TrialSerialKey` in `NET Framework 4.8/EdiFabric.Examples.NCPDP.Telco.Common/Config.cs`. This provisional key has a limited quota. Once it runs out, you need an account and a Community subscription to continue the evaluation:
@@ -32,7 +32,7 @@ All projects can be evaluated with the demo serial key `bd96a836feca45cb91c86ee6
 1. [Sign up free for **Community**](https://www.edifabric.com/pricing.html) to get your own evaluation serial key. Community never expires, requires no credit card, and is for non-production use. The first 14 days after you subscribe have unlimited operations, then the quota is 250 per day. To extend the unlimited period, ask through the [support portal](https://support.edifabric.com/hc/en-us/requests/new) or at [support@edifabric.com](mailto:support@edifabric.com). After signup, retrieve your serial from [Your Account](https://www.edifabric.com/docs/getting-started/your-account.html).
 2. Replace the demo key in `TrialSerialKey` with your serial. The .NET 6 projects link this file, so one edit covers both solutions.
 
-NuGet restore pulls **EdiFabric 11.0.0**.
+NuGet restore pulls **EdiFabric 11.2.0**.
 
 ## Getting started
 
@@ -51,14 +51,14 @@ To translate your own file, change the path in `EdiFabric.Examples.NCPDP.Telco.D
 
 ## Usage
 
-Every example calls `License.SetSerial` before it reads or writes. On Community that is the call to use. See [Licensing](#licensing) for Developer, Enterprise and Perpetual.
+Every example calls `License.EnsureToken` before it reads or writes. Since EdiFabric 11.2.0 that's the one licensing call on every plan, in place of `License.SetSerial`. See [Licensing](#licensing).
 
 ```csharp
 using EdiFabric.Core.Model.Edi;
 using EdiFabric.Framework.Readers;
 using EdiFabric.Templates.TelcoD0;
 
-License.SetSerial(serial);   // from your Community or paid plan
+License.EnsureToken(serial, seconds: 3600);   // every plan: license the process (see Licensing)
 
 var ncpdpStream = File.OpenRead(@"Files\ClaimBillings");
 
@@ -140,24 +140,24 @@ For another transaction, download its C# template from the EDI spec library. See
 >
 > Use of the product is subject to the [EULA](https://www.edifabric.com/files/eula.pdf).
 
-| Plan | What works | Recommended |
-| --- | --- | --- |
-| Community | `License.SetSerial` only. Online check. 250 operations per day. Non-production. | `License.SetSerial` |
-| Developer | `License.SetSerial` and `License.EnsureToken` (`EnsureToken` caches the result for 1 day) | `License.EnsureToken` |
-| Enterprise and Perpetual | `License.SetSerial`, `License.GetToken` / `License.SetToken` | `License.SetToken` (offline tokens) |
+**Use `License.EnsureToken` on every plan.** Since EdiFabric 11.2.0 it's the one licensing call for Community, Developer, Enterprise and Perpetual, in place of `License.SetSerial`. Call it once at startup with your serial and the number of seconds a token must still be valid, and it keeps the process licensed from then on.
+
+| Plan | What `License.EnsureToken` does |
+| --- | --- |
+| Community and the demo serial | Checks the serial online on every operation, as `License.SetSerial` does |
+| Developer, Enterprise and Perpetual | Gets a token, caches it on disk and refreshes it before it expires, so operations are checked locally |
+
+The token cache is `%LOCALAPPDATA%\EdiFabric\tokens` on Windows, `~/Library/Caches/EdiFabric/tokens` on macOS, and `$XDG_CACHE_HOME/edifabric/tokens` (or `~/.cache/edifabric/tokens`) on Linux, so every process on the machine reuses the token. Set `EDIFABRIC_TOKEN_CACHE` to another folder, or to `none` to turn the cache off. When the license server can't be reached, a cached token that's still valid keeps working; without one, calls throw `LicenseException` with [error 640](#error-codes).
 
 ```csharp
-// Community: authorize against the license server
-License.SetSerial(serial);
-
-// Developer (recommended): 1-day built-in cache; refreshes if the token expires within N seconds
+// Every plan (recommended): license the process; tokens are refreshed when they expire within N seconds
 License.EnsureToken(serial, seconds: 3600);
 
-// Enterprise and Perpetual: set an offline token
+// Enterprise and Perpetual, when your hosts manage tokens themselves: set an offline token
 License.SetToken(token);
 ```
 
-The examples call `License.SetSerial(Config.TrialSerialKey)`. On Developer, call `License.EnsureToken` instead. `TokenFileCache.Set()` in `EdiFabric.Examples.NCPDP.Telco.Common` is the manual `GetToken` / `SetToken` cache, for when you want to store the token yourself.
+The examples call `License.EnsureToken(Config.TrialSerialKey, 3600)`. `License.SetSerial` still works, but it checks the serial online on every operation, on every plan. `TokenFileCache.Set()` in `EdiFabric.Examples.NCPDP.Telco.Common` is the manual `GetToken` / `SetToken` cache, for Enterprise and Perpetual hosts that fetch and store offline tokens themselves.
 
 Self-service offline tokens last 30 days, so refresh them before they expire. If your hosts can't refresh a token, Enterprise can request a 1-year token and Perpetual a non-expiring token. Long-lived tokens are issued after the trial or evaluation period to registered companies using professional email addresses, and are non-refundable once issued. See [how to request one](https://www.edifabric.com/docs/faq/pricing-and-licensing-faqs.html#long-lived-tokens). Treat every token as a secret, and keep it out of source control.
 
@@ -166,6 +166,8 @@ Self-service offline tokens last 30 days, so refresh them before they expire. If
 License failures throw `LicenseException`. `ErrorCode` is the number below, and `Message` is the text.
 
 **Error 639** means the Community daily quota was exceeded. Upgrade your plan at [edifabric.com/pricing](https://www.edifabric.com/pricing.html) if you wish to continue.
+
+**Error 640** means the license server can't be reached and no valid token is cached. Check the internet connection, firewall and proxy settings. A cached token that's still valid keeps working, so this happens only before the first token, or after a token expired.
 
 | Code | Message |
 | --- | --- |
@@ -200,6 +202,7 @@ License failures throw `LicenseException`. `ErrorCode` is the number below, and 
 | 637 | Invalid JSON. Enable logging for additional details |
 | 638 | The operation is not supported by your license |
 | 639 | Your license has reached its daily call limit. Upgrade your plan at edifabric.com to continue using the product. |
+| 640 | The license server can't be reached and no valid token is cached. Check the internet connection, firewall and proxy settings, and try again. Contact support@edifabric.com if this continues |
 
 ## EDI templates
 
@@ -207,12 +210,10 @@ The examples reference the **EdiFabric.Examples.NCPDP.Telco.Common** project, wh
 
 ### Find and download a template
 
-Every transaction in the [EDI spec library](https://www.edifabric.com/specs/index.html) has its template as C#, and you can download it without an account.
+Every transaction in the [EDI spec library](https://www.edifabric.com/specs/index.html) has its template as C#. Downloads need a free sign-in, as the Community plan is enough, and accepting the spec licence once; every plan includes 50 spec downloads a day. The specs these examples use are a free sample that downloads without signing in.
 
 1. Open the [EDI spec library](https://www.edifabric.com/specs/index.html), select the standard and version, for example NCPDP Telecommunication D.0, and open the transaction, for example [B1](https://www.edifabric.com/specs/ncpdp/telecommunication-d0/b1.html).
-2. On the **ediFabric .NET** tab, select **Download C#** for the transaction class, `TSB1`, and **Common files** for the segments, composites and codes of the version. The common files are the same for every transaction in the version, so you download them once.
-
-![The Download C# and Common files buttons on the ediFabric .NET tab of a transaction in the EDI spec library](template.png)
+2. Under **Download**, select **C# template**. The ZIP has the transaction class, `TSB1`, and a Common folder with the segments, composites and codes it needs.
 
 Class names are TS plus the transaction id, in a namespace for the standard and version. For example, B1 is `EdiFabric.Templates.TelcoD0.TSB1`.
 
@@ -222,7 +223,7 @@ Put one version, or one trading partner, in one class library.
 
 1. Add a class library to the solution and install EdiFabric into it with `dotnet add package EdiFabric`.
 2. On .NET Framework only, reference `System.Runtime.Serialization` and `System.Xml.Serialization`.
-3. Unzip the downloads. Add the transaction file, for example `EF_TELCO_D0_B1.cs`, and every file in the Common folder of the version.
+3. Unzip the download. Add the transaction file, for example `EF_TELCO_D0_B1.cs`, and every file in its Common folder.
 4. Reference the class library from your application, and pass its assembly name to the reader, as the examples do with `EdiFabric.Examples.NCPDP.Telco.Common`. If the project is `ClassLibrary1`:
 
 ```csharp
@@ -233,7 +234,7 @@ It is the assembly name, not the namespace of `TSB1`. The full steps are in [EDI
 
 ### Customize a template for a trading partner
 
-When a trading partner changes the standard, for example by making a segment mandatory, build the change in the [EDI Spec Builder](https://www.edifabric.com/spec-builder/index.html):
+When a trading partner changes the standard, for example by making a segment mandatory, build the change in the [EDI Spec Builder](https://www.edifabric.com/spec-builder/index.html), which you use signed in to your free account:
 
 1. Open the transaction in the [EDI spec library](https://www.edifabric.com/specs/index.html) and select **Customize in Spec Builder**. Name the copy, change it, and select **Update**.
 2. Select your spec in the EDI Spec Builder, open the **ediFabric .NET** tab, and select **Download C#**.
@@ -246,7 +247,7 @@ A custom template is one C# file, generated from the saved spec. It includes its
 The same classes parse, generate and validate. EdiFabric supports the NCPDP Telecommunication versions. If a transaction is missing, [ask for it](https://support.edifabric.com/hc/en-us/requests/new).
 
 - [NCPDP Telecommunications D.0](https://www.edifabric.com/docs/standards/ncpdp-telecommunications-d0.html)
-- [EDI spec library](https://www.edifabric.com/specs/index.html) (no registration)
+- [EDI spec library](https://www.edifabric.com/specs/index.html) (browse without registration; sign in free to download)
 - [EDI Spec Builder](https://www.edifabric.com/spec-builder/index.html)
 
 ## Warranty
